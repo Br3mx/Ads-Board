@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 mongoose.connect("mongodb://0.0.0.0:27017/ads", { useNewUrlParser: true });
 const db = mongoose.connection;

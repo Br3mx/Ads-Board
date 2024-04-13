@@ -1,6 +1,5 @@
 const Ad = require("../models/ads.model");
-const user = require("../models/user.model");
-
+const fs = require("fs");
 const AdsController = {
   getAll: async (req, res) => {
     try {
@@ -40,6 +39,9 @@ const AdsController = {
         new: true,
       });
       res.json(updatedAd);
+      if (req.file) {
+        fs.unlinkSync(`./public/uploads/${updatedAd.image}`);
+      }
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
