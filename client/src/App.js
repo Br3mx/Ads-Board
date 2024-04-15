@@ -11,7 +11,6 @@ import User from "./components/pages/User/User.js";
 
 import { Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import Header from "./components/views/Header/Header.js";
 import NavBar from "./components/views/NavBar/NavBar.js";
 import Footer from "./components/views/Footer/Footer.js";
 const App = () => {
