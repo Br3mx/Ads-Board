@@ -31,7 +31,7 @@ const Login = () => {
           dispatch(logIn({ login }));
           setTimeout(() => {
             navigate("/");
-          }, 3000);
+          }, 1500);
         } else if (res.status === 400) {
           setStatus("clientError");
         } else if (res.status === 409) {
@@ -43,6 +43,7 @@ const Login = () => {
       .catch((err) => {
         setStatus("serverError");
       });
+    console.log(handleSubmit);
   };
   return (
     <Form className="col-12 col-sm-4 mx-auto" onSubmit={handleSubmit}>
