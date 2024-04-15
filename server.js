@@ -31,9 +31,9 @@ app.use(
     saveUninitialized: false,
   })
 );
-/*app.get("*", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});*/
+});
 
 app.use("/api", adsRoutes);
 app.use("/auth", authRoutes);
@@ -41,6 +41,6 @@ app.use("/auth", authRoutes);
 app.use((req, res) => {
   res.status(404).send({ message: "Not Found..." });
 });
-app.listen("8000", () => {
-  console.log("Server is running on port: 8000");
+const server = app.listen(process.env.PORT || 8000, () => {
+  console.log("Server is running...");
 });
