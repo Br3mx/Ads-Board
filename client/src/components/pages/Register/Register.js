@@ -24,17 +24,20 @@ const Register = () => {
     };
 
     setStatus("loading");
-    fetch(`${API_URL}/auth/register`, options).then((res) => {
-      console.log(res);
-      if (res.status === 201) {
-        setStatus("success");
-      } else if (res.status === 400) {
-        setStatus("clientError");
-      } else if (res.status === 409) {
-        setStatus("loginError");
-      } else setStatus("serverError");
-    });
-
+    fetch(`${API_URL}/auth/register`, options)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          setStatus("success");
+        } else if (res.status === 400) {
+          setStatus("clientError");
+        } else if (res.status === 409) {
+          setStatus("loginError");
+        } else setStatus("serverError");
+      })
+      .catch((err) => {
+        setStatus("serverError");
+      });
     console.log("RegData: ");
     console.log({ login, password, avatar, phoneNumber });
   };
