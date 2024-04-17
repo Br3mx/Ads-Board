@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getLoggedUser } from "../../redux/userRedux";
-import { fetchAds } from "../../redux/adsRedux";
+import { addAd, fetchAds } from "../../redux/adsRedux";
 
 const AdForm = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const AdForm = () => {
     fd.append("price", price);
     fd.append("location", location);
     fd.append("image", image);
-    fd.append("user", user.id);
+    fd.append("user", user._id);
     fd.append("publishDate", publishDate);
 
     const option = {
@@ -60,6 +60,7 @@ const AdForm = () => {
         console.log(err);
         setStatus("serverError");
       });
+    dispatch(addAd);
   };
   return (
     <div style={{ width: "70%" }} className="m-auto">

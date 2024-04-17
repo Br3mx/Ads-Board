@@ -16,6 +16,7 @@ import Footer from "./components/views/Footer/Footer.js";
 import { fetchAds } from "./redux/adsRedux.js";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import SearchResults from "./components/pages/SearchPhrase/SearchResults.js";
 const App = () => {
   const dispatch = useDispatch();
 
@@ -39,7 +40,7 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/user" element={<User />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/ad/search/:searchPhrase" element={<SearchPchrase />} />
+          <Route path="/ad/search/:searchPhrase" element={<SearchResults />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
