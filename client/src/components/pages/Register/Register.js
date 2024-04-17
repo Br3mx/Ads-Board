@@ -153,7 +153,7 @@ const Register = () => {
         />
       </Form.Group>
 
-      <Button className="w-80" variant="success" type="submit">
+      <Button className="w-100" variant="success" type="submit">
         Sign up
       </Button>
     </Form>

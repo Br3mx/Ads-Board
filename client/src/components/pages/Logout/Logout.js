@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { API_URL } from "../../../config";
 import { logOut } from "../../../redux/userRedux.js";
 import { useEffect } from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Logout = () => {
   const dipstach = useDispatch();
@@ -14,7 +16,14 @@ const Logout = () => {
       dipstach(logOut());
     });
   }, [dipstach]);
-  return null;
+  return (
+    <div className="col-12 col-sm-4 mx-auto">
+      <h1 className="text-center">Your logout!</h1>
+      <Link to="/ ">
+        <Button className="w-100 my-2">Back to home</Button>
+      </Link>
+    </div>
+  );
 };
 
 export default Logout;

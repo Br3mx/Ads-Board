@@ -1,10 +1,11 @@
-import Header from "../../views/Header/Header";
+import AllAd from "../../features/Ad";
+import Search from "../SearchPhrase/SearchPhrase";
 
 const Home = () => {
   return (
     <main>
-      <Header />
-      <div>Home</div>
+      <Search />
+      <AllAd />
     </main>
   );
 };

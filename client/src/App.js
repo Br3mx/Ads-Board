@@ -13,7 +13,19 @@ import { Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import NavBar from "./components/views/NavBar/NavBar.js";
 import Footer from "./components/views/Footer/Footer.js";
+import { fetchAds } from "./redux/adsRedux.js";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const loadData = async () => {
+      await dispatch(fetchAds());
+    };
+
+    loadData();
+  }, [dispatch]);
   return (
     <main>
       <Container>
