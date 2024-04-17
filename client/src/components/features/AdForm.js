@@ -36,7 +36,7 @@ const AdForm = () => {
 
     const option = {
       method: "POST",
-      // credentials: 'include',
+
       body: fd,
     };
 
