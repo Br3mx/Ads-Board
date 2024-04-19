@@ -6,6 +6,7 @@ const adsRoutes = require("./routes/ads.routes");
 const authRoutes = require("./routes/auth.routes");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const multer = require("multer");
 
 const app = express();
 
@@ -34,6 +35,21 @@ app.use(
 /*app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });*/
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/upload", upload.single("image"), (req, res) => {
+  res.json({ filename: req.file.filename });
+});
 
 app.use("/api", adsRoutes);
 app.use("/auth", authRoutes);

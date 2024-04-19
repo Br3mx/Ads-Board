@@ -24,7 +24,16 @@ const AdsController = {
   },
 
   addNewAd: async (req, res) => {
-    const ad = new Ad(req.body);
+    const ad = new Ad({
+      title: req.body.title,
+      content: req.body.content,
+      price: req.body.price,
+      location: req.body.location,
+      image: req.file.filename,
+      user: req.body.user,
+      publishDate: req.body.publishDate,
+    });
+
     try {
       const newAd = await ad.save();
       res.status(201).json(newAd);
@@ -35,13 +44,24 @@ const AdsController = {
 
   updateAd: async (req, res) => {
     try {
-      const updatedAd = await Ad.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-      });
-      res.json(updatedAd);
+      const updatedAd = await Ad.findByIdAndUpdate(
+        req.params.id,
+        {
+          title: req.body.title,
+          content: req.body.content,
+          price: req.body.price,
+          location: req.body.location,
+
+          ...(req.file && { image: req.file.filename }),
+        },
+        { new: true }
+      );
+
       if (req.file) {
         fs.unlinkSync(`./public/uploads/${updatedAd.image}`);
       }
+
+      res.json(updatedAd);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
